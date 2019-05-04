@@ -1,0 +1,18 @@
+<?php
+
+namespace Weixin\App\Models;
+
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laravel\Passport\HasApiTokens;
+
+class User extends Authenticatable
+{
+    use Notifiable, HasApiTokens;
+
+    protected $table = "users";
+
+    public function miniapp() {
+        return $this->hasMany(WeixinUser::class, "user_id", "id");
+    }
+}
